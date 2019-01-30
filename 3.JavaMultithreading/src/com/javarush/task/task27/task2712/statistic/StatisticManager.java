@@ -1,23 +1,20 @@
 package com.javarush.task.task27.task2712.statistic;
 
 import com.javarush.task.task27.task2712.Util;
-import com.javarush.task.task27.task2712.ad.Advertisement;
 import com.javarush.task.task27.task2712.ad.StatisticAdvertisementManager;
-import com.javarush.task.task27.task2712.kitchen.Cook;
 import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
 import com.javarush.task.task27.task2712.statistic.event.EventDataRow;
 import com.javarush.task.task27.task2712.statistic.event.EventType;
 import com.javarush.task.task27.task2712.statistic.event.VideoSelectedEventDataRow;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StatisticManager {
     private static StatisticManager instance;
-    private Set<Cook> cooks = new HashSet<>();
 
-    public Set<Cook> getCooks() {
-        return cooks;
-    }
 
     private StatisticManager() {
     }
@@ -33,10 +30,6 @@ public class StatisticManager {
 
     public void register(EventDataRow data) {
         statisticStorage.put(data);
-    }
-
-    public void register(Cook cook) {
-        cooks.add(cook);
     }
 
     public void printAdvertisementProfit() {
@@ -69,11 +62,11 @@ public class StatisticManager {
         for (String mapEntry :
                 processCookTime.keySet()) {
             System.out.println(mapEntry);
-           HashMap<String,Integer> entrySet = processCookTime.get(mapEntry);
+            HashMap<String, Integer> entrySet = processCookTime.get(mapEntry);
             for (String key :
                     entrySet.keySet()) {
-                if(entrySet.get(key)>0)
-                System.out.println(key+" - "+((int)entrySet.get(key))+" min" );
+                if (entrySet.get(key) > 0)
+                    System.out.println(key + " - " + ((int) entrySet.get(key)) + " min");
             }
             System.out.println();
 
@@ -98,13 +91,13 @@ public class StatisticManager {
 
 
     public void printActiveVideoSet() {
-        StatisticAdvertisementManager.getInstance().getActiveVideosSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins->{
-            System.out.println(ins.getName()+" - "+ins.getHits());
+        StatisticAdvertisementManager.getInstance().getActiveVideosSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins -> {
+            System.out.println(ins.getName() + " - " + ins.getHits());
         });
     }
 
     public void printArchivedVideoSet() {
-        StatisticAdvertisementManager.getInstance().getArchivedVideoSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins->{
+        StatisticAdvertisementManager.getInstance().getArchivedVideoSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins -> {
             System.out.println(ins.getName());
         });
     }
