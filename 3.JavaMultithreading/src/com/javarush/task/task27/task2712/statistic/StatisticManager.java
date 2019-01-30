@@ -15,6 +15,10 @@ public class StatisticManager {
     private static StatisticManager instance;
     private Set<Cook> cooks = new HashSet<>();
 
+    public Set<Cook> getCooks() {
+        return cooks;
+    }
+
     private StatisticManager() {
     }
 

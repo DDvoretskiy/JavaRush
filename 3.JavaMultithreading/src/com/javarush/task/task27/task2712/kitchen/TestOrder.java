@@ -4,7 +4,7 @@ import com.javarush.task.task27.task2712.Tablet;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TestOrder extends Order {
 
@@ -16,9 +16,10 @@ public class TestOrder extends Order {
     protected void initDishes() throws IOException {
         dishes = new ArrayList<>();
         Dish[] dishesarray = Dish.values();
-        for (int i = 0; i < (int) Math.random() * 4; i++) {
-            int index = (int) Math.random() * 4;
-            dishes.add(dishesarray[index]);
+        int j =  ThreadLocalRandom.current().nextInt(0, 6);
+        for (int i = 0; i < j; i++) {
+            int index = (int) (Math.random() * 4);
+            dishes.add(dishesarray[ThreadLocalRandom.current().nextInt(0, 5)]);
         }
     }
 }
