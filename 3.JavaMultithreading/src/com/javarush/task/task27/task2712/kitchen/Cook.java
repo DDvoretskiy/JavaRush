@@ -23,7 +23,7 @@ public class Cook extends Observable {
 
     public void startCookingOrder(Order order){
         System.out.println("Start cooking - " + order+", cooking time "+((Order)order ).getTotalCookingTime()+"min");
-        StatisticManager.getInstance().register(new CookedOrderEventDataRow(OrderManager.getTablet().toString(),name,((Order) order).getTotalCookingTime(),((Order) order).getDishes()));
+        StatisticManager.getInstance().register(new CookedOrderEventDataRow(order.getTablet().toString(),name,((Order) order).getTotalCookingTime(),((Order) order).getDishes()));
         setChanged();
         notifyObservers(order);
     }

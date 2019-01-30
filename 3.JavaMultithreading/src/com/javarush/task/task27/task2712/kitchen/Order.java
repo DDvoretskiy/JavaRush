@@ -50,4 +50,8 @@ public class Order {
     protected void initDishes() throws IOException{
         dishes = ConsoleHelper.getAllDishesForOrder();
     }
+
+    public Tablet getTablet() {
+        return tablet;
+    }
 }

@@ -17,7 +17,4 @@ public class OrderManager implements Observer {
 
         }
     }
-    public static Tablet getTablet(){
-        return null;
-    }
 }
