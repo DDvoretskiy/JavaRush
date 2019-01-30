@@ -7,7 +7,7 @@ public class AdvertisementStorage {
     private final List<Advertisement> videos = new ArrayList();
     private static AdvertisementStorage ourInstance;
 
-    public static AdvertisementStorage getInstance() {
+    public static synchronized AdvertisementStorage getInstance() {
         if (ourInstance == null) {
             ourInstance = new AdvertisementStorage();
         }
@@ -16,18 +16,18 @@ public class AdvertisementStorage {
 
     private AdvertisementStorage() {
         Object someContent = new Object();
-        add(new Advertisement(someContent, "1", 1523, 3, 3 * 60));
-        add(new Advertisement(someContent, "2", 5, 2, 60));
-        add(new Advertisement(someContent, "3", 99, 2, 3 * 60));
-        add(new Advertisement(someContent, "4", 99, 10, 2 * 60));
-        add(new Advertisement(someContent, "5", 2506, 3, 3 * 60));
-        add(new Advertisement(someContent, "6", 2506, 3, 3 * 60));
+        add(new Advertisement(someContent, "first Video", 1523, 1, 3 * 60));
+        add(new Advertisement(someContent, "Second video", 5, 0, 60));
+        add(new Advertisement(someContent, "Третье видео", 99, 0, 3 * 60));
+        add(new Advertisement(someContent, "а вот такое видео", 99, 10, 2 * 60));
+        add(new Advertisement(someContent, "Новинка сезона", 2506, 3, 3 * 60));
+       /* add(new Advertisement(someContent, "6", 2506, 3, 3 * 60));
         add(new Advertisement(someContent, "7", 400, 1, 3 * 60));
         add(new Advertisement(someContent, "8", 500, 1, 2 * 60));
-        add(new Advertisement(someContent, "10", 400, 2, 3 * 60));
+        add(new Advertisement(someContent, "10", 400, 0, 3 * 60));
         add(new Advertisement(someContent, "11", 350, 100, 3 * 60)); // 3 min
         add(new Advertisement(someContent, "12", 1500, 10, 2 * 60)); //15 min
-        add(new Advertisement(someContent, "13", 4600, 2, 10 * 60));
+        add(new Advertisement(someContent, "13", 4600, 0, 10 * 60)); */
 
     }
 

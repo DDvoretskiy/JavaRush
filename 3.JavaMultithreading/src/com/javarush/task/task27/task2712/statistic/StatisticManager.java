@@ -1,6 +1,8 @@
 package com.javarush.task.task27.task2712.statistic;
 
 import com.javarush.task.task27.task2712.Util;
+import com.javarush.task.task27.task2712.ad.Advertisement;
+import com.javarush.task.task27.task2712.ad.StatisticAdvertisementManager;
 import com.javarush.task.task27.task2712.kitchen.Cook;
 import com.javarush.task.task27.task2712.statistic.event.CookedOrderEventDataRow;
 import com.javarush.task.task27.task2712.statistic.event.EventDataRow;
@@ -18,7 +20,7 @@ public class StatisticManager {
 
     private StatisticStorage statisticStorage = new StatisticStorage();
 
-    public static StatisticManager getInstance() {
+    public static synchronized StatisticManager getInstance() {
         if (instance == null) {
             instance = new StatisticManager();
         }
@@ -63,11 +65,11 @@ public class StatisticManager {
         for (String mapEntry :
                 processCookTime.keySet()) {
             System.out.println(mapEntry);
-            HashMap<String, Integer> entrySet = processCookTime.get(mapEntry);
+           HashMap<String,Integer> entrySet = processCookTime.get(mapEntry);
             for (String key :
                     entrySet.keySet()) {
-                if (entrySet.get(key) > 0)
-                    System.out.println(key + " - " + ((int) entrySet.get(key)) + " min");
+                if(entrySet.get(key)>0)
+                System.out.println(key+" - "+((int)entrySet.get(key))+" min" );
             }
             System.out.println();
 
@@ -92,9 +94,15 @@ public class StatisticManager {
 
 
     public void printActiveVideoSet() {
+        StatisticAdvertisementManager.getInstance().getActiveVideosSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins->{
+            System.out.println(ins.getName()+" - "+ins.getHits());
+        });
     }
 
     public void printArchivedVideoSet() {
+        StatisticAdvertisementManager.getInstance().getArchivedVideoSet().stream().sorted(((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()))).forEach(ins->{
+            System.out.println(ins.getName());
+        });
     }
 
 
