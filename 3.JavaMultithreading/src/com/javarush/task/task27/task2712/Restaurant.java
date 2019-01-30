@@ -14,15 +14,14 @@ public class Restaurant {
         Cook cook2 = new Cook("Петя");
         StatisticManager.getInstance().register(cook);
         StatisticManager.getInstance().register(cook2);
+        OrderManager orderManager = new OrderManager();
         Waiter waiter = new Waiter();
-        cook.addObserver(waiter);
         cook2.addObserver(waiter);
         ArrayList<Tablet> tablets = new ArrayList<>();
         Tablet tablet;
         for (int i = 0; i < 5; i++) {
             tablet = new Tablet(i);
-            tablet.addObserver(cook2);
-            tablet.addObserver(cook);
+            tablet.addObserver(orderManager);
             tablets.add(tablet);
         }
         Thread thread = new Thread(new RandomOrderGeneratorTask(tablets,ORDER_CREATING_INTERVAL));
@@ -33,13 +32,13 @@ public class Restaurant {
             e.printStackTrace();
         }
         thread.interrupt();
-
-       //ConsoleHelper.writeMessage(String.format("Заказ под номером %d", 1));
+        /*
+        ConsoleHelper.writeMessage(String.format("Заказ под номером %d", 1));
         DirectorTablet directorTablet = new DirectorTablet();
         directorTablet.printAdvertisementProfit();
         directorTablet.printCookWorkloading();
         directorTablet.printActiveVideoSet();
-        directorTablet.printArchivedVideoSet();
+        directorTablet.printArchivedVideoSet(); */
 
     }
 }

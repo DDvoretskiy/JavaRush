@@ -16,9 +16,8 @@ public class TestOrder extends Order {
     protected void initDishes() throws IOException {
         dishes = new ArrayList<>();
         Dish[] dishesarray = Dish.values();
-        int j =(int) (Math.random() * 4);
-        for (int i = 0; i < j ; i++) {
-            int index = (int) (Math.random() * 4);
+        for (int i = 0; i < (int) Math.random() * 4; i++) {
+            int index = (int) Math.random() * 4;
             dishes.add(dishesarray[index]);
         }
     }
