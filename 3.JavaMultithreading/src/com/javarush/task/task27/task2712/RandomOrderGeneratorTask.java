@@ -7,9 +7,9 @@ public class RandomOrderGeneratorTask implements Runnable {
     private List<Tablet> tabletList;
     private int orderInterval;
 
-    public RandomOrderGeneratorTask(List<Tablet> tabletList, int orderInterval) {
-        this.tabletList = tabletList;
-        this.orderInterval = orderInterval;
+    public RandomOrderGeneratorTask(List<Tablet> tablets, int interval){
+        this.tabletList = tablets;
+        this.orderInterval = interval;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class RandomOrderGeneratorTask implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Thread.sleep(orderInterval);
-                tabletList.get(randomNumber).createOrder();
+                tabletList.get(randomNumber).createTestOrder();
             } catch (InterruptedException e) {
 
             }

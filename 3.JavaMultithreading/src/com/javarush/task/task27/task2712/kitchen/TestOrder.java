@@ -4,8 +4,10 @@ import com.javarush.task.task27.task2712.Tablet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestOrder extends Order {
+
     public TestOrder(Tablet tablet) throws IOException {
         super(tablet);
     }
@@ -14,8 +16,9 @@ public class TestOrder extends Order {
     protected void initDishes() throws IOException {
         dishes = new ArrayList<>();
         Dish[] dishesarray = Dish.values();
-        for (int i = 0; i < (int) Math.random() * 4; i++) {
-            int index = (int) Math.random() * 4;
+        int j =(int) (Math.random() * 4);
+        for (int i = 0; i < j ; i++) {
+            int index = (int) (Math.random() * 4);
             dishes.add(dishesarray[index]);
         }
     }
