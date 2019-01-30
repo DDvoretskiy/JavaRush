@@ -9,7 +9,7 @@ import java.util.List;
 public class Order {
     private final Tablet tablet;
 
-    private List<Dish> dishes;
+    protected List<Dish> dishes;
 
     public List<Dish> getDishes() {
         return dishes;
@@ -17,7 +17,7 @@ public class Order {
 
     public Order(Tablet tablet) throws IOException {
         this.tablet = tablet;
-        dishes = ConsoleHelper.getAllDishesForOrder();
+        initDishes();
     }
 
     public int getTotalCookingTime() {
@@ -45,5 +45,9 @@ public class Order {
             return stringBuilder.substring(0, stringBuilder.lastIndexOf(",")) + "] of " + tablet;
         }
 
+    }
+
+    protected void initDishes() throws IOException {
+        dishes = ConsoleHelper.getAllDishesForOrder();
     }
 }
