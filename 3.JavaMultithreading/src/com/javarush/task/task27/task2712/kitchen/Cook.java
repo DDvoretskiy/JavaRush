@@ -43,6 +43,7 @@ public class Cook extends Observable implements Runnable {
                 startCookingOrder(queue.poll());
             }
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

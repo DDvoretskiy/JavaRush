@@ -26,25 +26,26 @@ public class Restaurant {
             tablet.setQueue(orderQueue);
             tablets.add(tablet);
         }
-        Thread threadCook = new Thread(cook);
-        Thread threadCook2 = new Thread(cook2);
-        Thread thread = new Thread(new RandomOrderGeneratorTask(tablets,ORDER_CREATING_INTERVAL));
+        ThreadGroup threadGroup = new ThreadGroup("Демоны");
+        Thread threadCook = new Thread(threadGroup,cook);
+        Thread threadCook2 = new Thread(threadGroup,cook2);
+        Thread thread = new Thread(threadGroup,new RandomOrderGeneratorTask(tablets,ORDER_CREATING_INTERVAL));
+        threadGroup.setDaemon(true);
         thread.start();
         threadCook.start();
         threadCook2.start();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         thread.interrupt();
-        /*
-        ConsoleHelper.writeMessage(String.format("Заказ под номером %d", 1));
+
+        //ConsoleHelper.writeMessage(String.format("Заказ под номером %d", 1));
         DirectorTablet directorTablet = new DirectorTablet();
         directorTablet.printAdvertisementProfit();
         directorTablet.printCookWorkloading();
         directorTablet.printActiveVideoSet();
-        directorTablet.printArchivedVideoSet(); */
-
+        directorTablet.printArchivedVideoSet();
     }
 }

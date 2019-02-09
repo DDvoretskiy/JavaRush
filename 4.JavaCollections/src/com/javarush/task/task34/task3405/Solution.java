@@ -28,15 +28,15 @@ public class Solution {
 
         Monkey monkey = new Monkey("Simka");
 
+        SoftReference<Monkey> reference = new SoftReference<Monkey>(monkey);
         //Add reference here
-        SoftReference <Monkey> reference = new SoftReference<Monkey>(monkey);
 
         helper.callGC();
 
         monkey = null;
 
         helper.callGC();
-        helper.heapConsuming();
+        helper.consumeHeap();
 
         if (reference.get() == null)
             System.out.println("Finalized");
@@ -62,20 +62,20 @@ public class Solution {
             Thread.sleep(1000);
         }
 
-        void heapConsuming() {
+        void consumeHeap() {
             try {
                 List<Solution> heap = new ArrayList<Solution>(100000);
                 while (!isFinalized) {
                     heap.add(new Solution());
                 }
             } catch (OutOfMemoryError e) {
-                System.out.println("Out of memory error raised");
+                System.out.println("An out-of-memory exception has occurred");
             }
         }
 
         public void finish() {
             System.out.println("Done");
-            System.out.println("It took " + getTime() + " sec");
+            System.out.println("It took " + getTime() + " s");
         }
     }
 }

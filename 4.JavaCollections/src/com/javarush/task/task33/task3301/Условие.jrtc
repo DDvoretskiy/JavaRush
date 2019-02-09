@@ -1,6 +1,4 @@
-taskKey="com.javarush.task.task33.task3301"
-
-Первая сериализация в JSON
+taskKey="com.javarush.task.task33.task3301"\n\nПервая сериализация в JSON
 
 НЕОБХОДИМО: подключенные библиотеки Jackson Core, Bind и Annotation версии 2.6.1
 

@@ -12,7 +12,7 @@ public class Solution {
         System.out.println(result);    //expected 110
 
         number = new Number(NumerationSystemType._16, "6df");
-        result = convertNumberToOtherNumerationSystem(number, NumerationSystemType._8);
+        result = convertNumberToOtherNumerationSystem(number, NumerationSystemType._10);
         System.out.println(result);    //expected 3337
     }
 

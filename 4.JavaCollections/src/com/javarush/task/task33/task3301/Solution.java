@@ -1,6 +1,8 @@
 package com.javarush.task.task33.task3301;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -10,6 +12,12 @@ import java.util.ArrayList;
 /* 
 Первая сериализация в JSON
 */
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property="type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value=Solution.Cat.class, name="dog"),
+        @JsonSubTypes.Type(value=Solution.Dog.class, name="dog")
+})
 public class Solution {
     public static void main(String[] args) throws IOException {
         Cat cat = new Cat();
@@ -37,27 +45,66 @@ public class Solution {
         mapper.writeValue(writer, object);
     }
 
-    @JsonAutoDetect
     public static class Pet {
-        public String name;
-        public Pet() { }
+        String name;
+
+    public Pet() {
     }
 
-    @JsonAutoDetect
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
     public static class Cat extends Pet {
-        public Cat() {
-        }
+        int age;
+        int weight;
 
-        public int age;
-        public int weight;
+    public Cat() {
     }
 
-    @JsonAutoDetect
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+}
+
     public static class Dog extends Pet {
-        public int age;
-        public String owner;
+        int age;
+        String owner;
 
-        public Dog() {
-        }
+    public Dog() {
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+}
 }

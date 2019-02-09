@@ -9,8 +9,9 @@ public class Cat {
 
     public Cat() {
         catCount++;
+        System.out.println(catCount);
     }
-//напишите тут ваш код
+
 
     @Override
     protected void finalize() throws Throwable {

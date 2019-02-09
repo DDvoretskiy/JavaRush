@@ -32,6 +32,6 @@ public class Solution {
             outputStream.write(s.getBytes("Windows-1251"));
             inputStream.close();
             outputStream.close();
-
+        
     }
 }
